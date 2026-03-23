@@ -2,30 +2,45 @@
 using namespace std;
 
 #include "student.h"
-#define N 3
+
 int main(int argc, char* argv[]) {
-  student s1,s2;
 
- s1.set_name("Amy"); s1.set_age(20); s2.set_name("James"); s2.set_age(17); s1.get_age()>s2.get_age() ? s1.print_name(); cout<< "is older":s2.print_name(); cout <<"is older";
-
-
-
-  student a[N];
+    int N = (argc - 1) / 2;
+    student a[N];
   // Set age and set name for the first two ppl
-  int i,age;
-  string n;
+    int i, age;
+    string n;
    // 1. Ask for N names and N age using cin
- 
-  
- 
+
+  int index = 1;
+  for (i=0;i<N;i++){
+    n = argv[index++];
+    a[i].set_name(n);
+
+    age = stoi(argv[index++]);
+    a[i].set_age(age);
+  }
+
   //2. Print name and age of all N ppl
+  cout << "----------"<<endl;
+  for(i=0;i<N;i++){
+    a[i].display();
+  }
+
   
   
   
   //3. Print name and age of 
   //the youngest person
   //Find what the age of the youngest person
- 
+ int youngest=a[0].get_age();
+    for (i=1;i<N;i++){
+        if(a[i].get_age() < youngest){
+          youngest=a[i].get_age();
+        }
+    }
+
+    //sort(a,N);
   
   // Print all info for the yougest person
  
@@ -33,12 +48,13 @@ int main(int argc, char* argv[]) {
   
   //4. Change input from cin to argv
 
-  
- return 0;
+  cout << "Youngest student" << endl;
+    for (i = 0; i < N; i++) {
+        if (a[i].get_age() == youngest) {
+            a[i].display();
+        }
+    }
 
+    return 0;
     
   }
-  
-  
-
-
